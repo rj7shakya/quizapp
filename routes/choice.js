@@ -13,9 +13,9 @@ router.get("/:id", (req, res) => {
   );
 });
 
-router.post("/", (req, res) => {
+router.post("/:id", (req, res) => {
   mysqlConnection.query(
-    `insert into question(question) value ('${req.body.question}')`,
+    `insert into choice(choice, question_id) value ('${req.body.choice}',${req.params.id});`,
     (err, rows, field) => {
       if (err) return res.json({ error: err });
 

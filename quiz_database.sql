@@ -14,8 +14,8 @@ use quiz;
 --     references question(question_id)
 -- );
 -- 
-insert into choice(choice, question_id)
-value ('b ',3);
+-- insert into choice(choice, question_id)
+-- value ('b ',3);
 
-select * from choice;
-
+-- select * from question;
+SELECT * FROM question WHERE question_id=1

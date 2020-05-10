@@ -18,4 +18,4 @@ use quiz;
 -- value ('b ',3);
 
 -- select * from question;
-SELECT * FROM question WHERE question_id=1
+SELECT * FROM choice WHERE question_id=1

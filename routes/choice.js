@@ -4,7 +4,7 @@ const mysqlConnection = require("../connection");
 
 router.get("/:id", (req, res) => {
   mysqlConnection.query(
-    `SELECT * FROM choice WHERE question_id=${req.params.id}`,
+    `SELECT choice,is_correct  FROM choice WHERE question_id=${req.params.id}`,
     (err, rows, field) => {
       if (err) return res.json({ error: err });
 

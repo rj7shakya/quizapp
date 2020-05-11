@@ -4,33 +4,7 @@ import axios from "axios";
 
 class Quiz extends Component {
   state = {
-    questions: [
-      // {
-      //   id: 1,
-      //   question: "what is capital of Nepal?",
-      //   choice: ["a", "b", "c", "d"],
-      // },
-      // {
-      //   id: 2,
-      //   question: "what is capital of India?",
-      //   choice: ["a", "b", "c", "d"],
-      // },
-      // {
-      //   id: 3,
-      //   question: "what is capital of China?",
-      //   choice: ["a", "b", "c", "d"],
-      // },
-      // {
-      //   id: 4,
-      //   question: "what is capital of Australia?",
-      //   choice: ["a", "b", "c", "d"],
-      // },
-      // {
-      //   id: 5,
-      //   question: "what is capital of America?",
-      //   choice: ["a", "b", "c", "d"],
-      // },
-    ],
+    questions: [],
   };
   render() {
     return (

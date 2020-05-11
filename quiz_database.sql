@@ -18,9 +18,9 @@ use quiz;
 -- value ('b ',3);
 
 -- select * from question;
--- SELECT question.question,choice.choice,choice.is_correct FROM question INNER JOIN choice ON question.question_id=choice.question_id;
+SELECT question.question,choice.choice,choice.is_correct FROM question INNER JOIN choice ON question.question_id=choice.question_id order by question.question_id;
 
-select choice,is_correct from choice where question_id=2;
+-- select choice,is_correct from choice where question_id=2;
 
 
 

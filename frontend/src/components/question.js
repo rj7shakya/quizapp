@@ -9,18 +9,12 @@ const question = ({ questions, id }) => {
         {questions.map((question) => (
           <>
             <li>{question.question}</li>
-            {question.choice}
-            {/* <Choice options={question.choice} key={question.id} /> */}
+            <Choice id={question.question_id} key={question.id} />
           </>
         ))}{" "}
       </ul>
     </div>
   );
-};
-
-const getChoice = async (id) => {
-  const res = await axios.get(`/question/${id}`);
-  console.log(res);
 };
 
 export default question;

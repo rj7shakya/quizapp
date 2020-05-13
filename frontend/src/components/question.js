@@ -1,17 +1,19 @@
 import React from "react";
 import Choice from "./Choice";
 
-const question = ({ questions, id }) => {
+const question = ({ questions }) => {
   return (
-    <div>
-      <ul>
+    <div className="container px-lg-5">
+      <ol className="list-group">
         {questions.map((question) => (
           <React.Fragment key={question.question_id}>
-            <li>{question.question}</li>
+            <li className="mar-2 ">{question.question}</li>
             <Choice choices={question.choices} key={question.id} />
           </React.Fragment>
         ))}{" "}
-      </ul>
+        <br />
+        <br />
+      </ol>
     </div>
   );
 };

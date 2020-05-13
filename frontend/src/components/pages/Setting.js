@@ -10,6 +10,7 @@ class Setting extends Component {
     return (
       <div className="container py-2">
         <h3>Quiz setting page:</h3>
+        <h5>You can remove options by clicking on it.</h5>
         <Question questions={this.state.questions} key={this.state.questions} />
       </div>
     );

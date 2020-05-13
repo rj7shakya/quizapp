@@ -4,12 +4,16 @@ import axios from "axios";
 
 const Question = ({ questions, history }) => {
   const [num, setnum] = useState(0);
+  const [questionstate, setquestionstate] = useState([]);
   useEffect(() => {
     setnum(questions.length);
+    setquestionstate(questions);
   }, [questions]);
+
+  useEffect(() => {}, [questionstate]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target.question.value);
     const config = {
       headers: {
         "Content-type": "application/json",
@@ -22,7 +26,6 @@ const Question = ({ questions, history }) => {
       .post("/question", question, config)
       .then((res) => {
         console.log("done", res);
-        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -30,20 +33,7 @@ const Question = ({ questions, history }) => {
   };
   return (
     <div className="">
-      <ol className="list-group">
-        {questions.map((question) => (
-          <React.Fragment key={question.question_id}>
-            <li className="">{question.question}</li>
-            <Choice
-              choices={question.choices}
-              id={question.question_id}
-              key={question.id}
-            />
-            <hr className="new1"></hr>
-          </React.Fragment>
-        ))}{" "}
-      </ol>
-      <div className="font">
+      <div className="font marb2">
         <form action="" onSubmit={onSubmit}>
           <div className="input-group mb-3">
             <input
@@ -60,6 +50,19 @@ const Question = ({ questions, history }) => {
           />
         </form>
       </div>
+      <ol className="list-group">
+        {questionstate.map((question) => (
+          <React.Fragment key={question.question_id}>
+            <li className="">{question.question}</li>
+            <Choice
+              choices={question.choices}
+              id={question.question_id}
+              key={question.id}
+            />
+            <hr className="new1"></hr>
+          </React.Fragment>
+        ))}{" "}
+      </ol>
     </div>
   );
 };

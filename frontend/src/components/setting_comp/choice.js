@@ -1,8 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Choice = (props) => {
+  const [text, settext] = useState("");
+  const [buttonc, setbuttonc] = useState("");
+  const [todisble, settodisble] = useState(false);
+  const [choicestate, setchoicestate] = useState([]);
   const { choices, id } = props;
+  useEffect(() => {
+    setchoicestate(choices);
+  }, []);
+
+  useEffect(() => {
+    if (choicestate.length >= 5) {
+      settext("max 5 question allowed");
+      settodisble(true);
+      setbuttonc("alert-danger");
+    } else if (choicestate.length < 2) {
+      settext("min 2 question needed");
+      settodisble(false);
+      setbuttonc("alert-danger");
+    } else {
+      settext("");
+      settodisble(false);
+      setbuttonc("");
+    }
+  }, [choicestate]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const config = {
@@ -17,8 +41,8 @@ const Choice = (props) => {
     await axios
       .post(`/choice/${id}`, choice, config)
       .then((res) => {
-        console.log("done", res);
-        window.location.reload();
+        console.log("done", res.data.result);
+        setchoicestate([...choicestate, res.data.result]);
       })
       .catch((err) => {
         console.log(err);
@@ -31,12 +55,12 @@ const Choice = (props) => {
         "Content-type": "application/json",
       },
     };
-    console.log(id, choice_id);
     await axios
       .delete(`/choice/${choice_id}`)
       .then((res) => {
-        console.log("deleted", res);
-        window.location.reload();
+        let filteredAry = choicestate.filter((e) => e.choice_id !== choice_id);
+        setchoicestate([...filteredAry]);
+        console.log(filteredAry);
       })
       .catch((err) => {
         console.log(err);
@@ -46,12 +70,11 @@ const Choice = (props) => {
   return (
     <React.Fragment>
       <ul>
-        {choices.map((choice) => (
+        {choicestate.map((choice) => (
           <React.Fragment key={choice.choice_id}>
             <div
               onClick={() => {
                 delete_choice(id, choice.choice_id);
-                console.log("delete_choice");
               }}
               className="list-group-item set"
             >
@@ -59,6 +82,9 @@ const Choice = (props) => {
             </div>
           </React.Fragment>
         ))}{" "}
+        <div className={"alert " + buttonc} role="alert">
+          {text}
+        </div>
       </ul>
       <div className="font opw">
         <form action="" onSubmit={onSubmit}>
@@ -88,6 +114,7 @@ const Choice = (props) => {
           <input
             type="submit"
             onSubmit={onSubmit}
+            disabled={todisble}
             value="Add option"
             className="btn btn-dark "
           />

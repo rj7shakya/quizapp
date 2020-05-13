@@ -1,26 +1,29 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Choice = ({ choices }) => {
+const Choice = (props) => {
+  const { choices, id } = props;
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target.question.value);
+    console.log(e.target.choice.value);
+    console.log(e.target.correct.checked);
+    console.log(id);
     const config = {
       headers: {
         "Content-type": "application/json",
       },
     };
-    const question = {
-      question: e.target.question.value,
+    const choice = {
+      choice: e.target.choice.value,
     };
-    await axios
-      .post("/question", question, config)
-      .then((res) => {
-        console.log("done", res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // await axios
+    //   .post(`/choice/${choices.questionQuestionId}`, choice, config)
+    //   .then((res) => {
+    //     console.log("done", res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   return (
@@ -32,17 +35,37 @@ const Choice = ({ choices }) => {
           </React.Fragment>
         ))}{" "}
       </ul>
-      <div className="font alert">
+      <div className="font opw">
         <form action="" onSubmit={onSubmit}>
-          <div className="input-group mb-3">
+          <div className=" row pad2">
             <input
               type="text"
-              className="form-control"
+              className="form-control w-50 "
               placeholder="Add question here "
               name="choice"
             ></input>
+            <div className="pad1">
+              {" "}
+              <label htmlFor="correct" className="pad1">
+                <input
+                  type="checkbox"
+                  id="correct"
+                  name="correct"
+                  value="correct"
+                  className="checkbox "
+                ></input>{" "}
+                Correct ?
+              </label>
+            </div>
+            <br></br>
+            <br></br>
           </div>
-          <input type="submit" value="Add option" className="btn btn-dark " />
+          <input
+            type="submit"
+            onSubmit={onSubmit}
+            value="Add option"
+            className="btn btn-dark "
+          />
         </form>
       </div>
     </React.Fragment>

@@ -29,17 +29,18 @@ const Question = ({ questions, history }) => {
   };
   return (
     <div className="">
-      <h4>{num}</h4>
       <ol className="list-group">
         {questions.map((question) => (
           <React.Fragment key={question.question_id}>
-            <li className="mar-2 ">{question.question}</li>
-            <Choice choices={question.choices} key={question.id} />
+            <li className="">{question.question}</li>
+            <Choice
+              choices={question.choices}
+              id={question.question_id}
+              key={question.id}
+            />
             <hr className="new1"></hr>
           </React.Fragment>
         ))}{" "}
-        <br />
-        <br />
       </ol>
       <div className="font">
         <form action="" onSubmit={onSubmit}>

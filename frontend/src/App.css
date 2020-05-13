@@ -38,3 +38,23 @@ hr.new1 {
   width: 300px !important;
   padding: 0;
 }
+
+.pad2 {
+  padding-top: 1rem;
+}
+
+.pad1 {
+  padding-left: 0.5rem;
+}
+
+.opw {
+  width: 500px !important;
+}
+
+.fontset {
+  font: 15px "Arial", san-serif;
+}
+
+.checkbox {
+  transform: scale(2);
+}

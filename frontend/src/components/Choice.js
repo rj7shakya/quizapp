@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Choice = ({ choices }) => {
+const Choice = ({ choices, setscore, score }) => {
   const [text, settext] = useState("");
   const [buttonc, setbuttonc] = useState("");
   const [todisble, settodisble] = useState(false);
@@ -10,6 +10,7 @@ const Choice = ({ choices }) => {
     if (is_correct) {
       settext("Correct");
       setbuttonc("alert-success");
+      setscore(++score);
     } else {
       setbuttonc("alert-danger");
       settext("Incorrect");

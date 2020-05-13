@@ -5,9 +5,6 @@ const Choice = (props) => {
   const { choices, id } = props;
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target.choice.value);
-    console.log(e.target.correct.checked);
-    console.log(id);
     const config = {
       headers: {
         "Content-type": "application/json",
@@ -15,15 +12,35 @@ const Choice = (props) => {
     };
     const choice = {
       choice: e.target.choice.value,
+      is_correct: e.target.correct.checked,
     };
-    // await axios
-    //   .post(`/choice/${choices.questionQuestionId}`, choice, config)
-    //   .then((res) => {
-    //     console.log("done", res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    await axios
+      .post(`/choice/${id}`, choice, config)
+      .then((res) => {
+        console.log("done", res);
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const delete_choice = async (id, choice_id) => {
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+    console.log(id, choice_id);
+    await axios
+      .delete(`/choice/${choice_id}`)
+      .then((res) => {
+        console.log("deleted", res);
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -31,7 +48,15 @@ const Choice = (props) => {
       <ul>
         {choices.map((choice) => (
           <React.Fragment key={choice.choice_id}>
-            <div className="list-group-item set">{choice.choice}</div>
+            <div
+              onClick={() => {
+                delete_choice(id, choice.choice_id);
+                console.log("delete_choice");
+              }}
+              className="list-group-item set"
+            >
+              {choice.choice}
+            </div>
           </React.Fragment>
         ))}{" "}
       </ul>

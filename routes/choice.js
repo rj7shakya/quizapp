@@ -32,4 +32,17 @@ router.post("/:id", (req, res) => {
     });
 });
 
+//delete choice of given id
+router.delete("/:id", (req, res) => {
+  Choice.findByPk(req.params.id)
+    .then((choice) => {
+      choice.destroy();
+      return res.json({ choice });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.json(err);
+    });
+});
+
 module.exports = router;

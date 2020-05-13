@@ -22,6 +22,7 @@ const Question = ({ questions, history }) => {
       .post("/question", question, config)
       .then((res) => {
         console.log("done", res);
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);

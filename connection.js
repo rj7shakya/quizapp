@@ -1,16 +1,10 @@
-//mysql connection
-const mysql = require("mysql");
-var mysqlConnection = mysql.createConnection({
+// seqeulize connection
+
+const Seqeulize = require("sequelize");
+
+const sequelize = new Seqeulize("quiz", "root", "inspiron", {
+  dialect: "mysql",
   host: "localhost",
-  user: "root",
-  password: "inspiron",
-  database: "quiz",
 });
 
-//connecting to database
-mysqlConnection.connect(function (err) {
-  if (err) throw err;
-  console.log("Connected to db!");
-});
-
-module.exports = mysqlConnection;
+module.exports = sequelize;

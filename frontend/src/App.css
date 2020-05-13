@@ -1,17 +1,22 @@
 a {
-  color: inherit;
+  color: black;
+}
+
+.black {
+  color: black;
 }
 
 .btn-block,
 .alert {
-  width: 200px !important;
+  width: 300px !important;
 }
 
 .mar-2 {
   margin: 2rem;
 }
 
-ol {
+ol,
+.font {
   font: 25px "Arial", san-serif;
 }
 
@@ -19,4 +24,8 @@ ol {
   width: 60% !important;
   padding-left: 3rem !important;
   background-color: #ebe7e4;
+}
+
+.plus {
+  cursor: pointer;
 }

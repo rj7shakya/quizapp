@@ -17,12 +17,12 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarMenu">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link to="/" className="m-2 text-decoration-none">
+            <Link to="/" className="m-2 text-decoration-none black">
               Quiz
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/setting" className="m-2 text-decoration-none">
+            <Link to="/setting" className="m-2 text-decoration-none black">
               Setting
             </Link>
           </li>

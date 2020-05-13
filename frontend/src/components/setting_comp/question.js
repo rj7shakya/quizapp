@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import Choice from "./choice";
 import axios from "axios";
 
-const Question = ({ questions, history }) => {
-  const [num, setnum] = useState(0);
+const Question = ({ questions }) => {
   const [questionstate, setquestionstate] = useState([]);
   useEffect(() => {
-    setnum(questions.length);
     setquestionstate(questions);
-  }, [questions]);
+  }, []);
 
   useEffect(() => {}, [questionstate]);
 
@@ -26,13 +24,14 @@ const Question = ({ questions, history }) => {
       .post("/question", question, config)
       .then((res) => {
         console.log("done", res);
+        setquestionstate([...questionstate, res.data]);
       })
       .catch((err) => {
         console.log(err);
       });
   };
   return (
-    <div className="">
+    <div className="font">
       <div className="font marb2">
         <form action="" onSubmit={onSubmit}>
           <div className="input-group mb-3">
@@ -51,20 +50,25 @@ const Question = ({ questions, history }) => {
         </form>
       </div>
       <ol className="list-group">
-        {questionstate.map((question) => (
-          <React.Fragment key={question.question_id}>
-            <li className="">{question.question}</li>
-            <Choice
-              choices={question.choices}
-              id={question.question_id}
-              key={question.id}
-            />
-            <hr className="new1"></hr>
-          </React.Fragment>
-        ))}{" "}
+        {questionstate &&
+          questionstate.map((question) => (
+            <React.Fragment key={question.question_id}>
+              <li className="">{question.question}</li>
+              <Choice
+                choices={question.choices}
+                id={question.question_id}
+                key={question.id}
+              />
+              <hr className="new1"></hr>
+            </React.Fragment>
+          ))}{" "}
       </ol>
     </div>
   );
+};
+
+Question.defaultProps = {
+  choices: [],
 };
 
 export default Question;

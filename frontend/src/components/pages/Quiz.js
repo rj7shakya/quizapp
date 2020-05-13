@@ -17,7 +17,6 @@ class Quiz extends Component {
     try {
       const res = await axios.get("/question");
       this.setState({ questions: [...res.data.questions] });
-      console.log(this.state.questions);
     } catch (error) {
       console.log(error);
     }

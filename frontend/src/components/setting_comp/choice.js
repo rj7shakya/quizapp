@@ -12,12 +12,12 @@ const Choice = (props) => {
   }, []);
 
   useEffect(() => {
-    if (choicestate.length >= 5) {
-      settext("max 5 question allowed");
+    if ((choicestate && choicestate.length) >= 5) {
+      settext("max 5 choices allowed");
       settodisble(true);
       setbuttonc("alert-danger");
-    } else if (choicestate.length < 2) {
-      settext("min 2 question needed");
+    } else if ((choicestate && choicestate.length) < 2) {
+      settext("min 2 choices needed");
       settodisble(false);
       setbuttonc("alert-danger");
     } else {
@@ -70,18 +70,19 @@ const Choice = (props) => {
   return (
     <React.Fragment>
       <ul>
-        {choicestate.map((choice) => (
-          <React.Fragment key={choice.choice_id}>
-            <div
-              onClick={() => {
-                delete_choice(id, choice.choice_id);
-              }}
-              className="list-group-item set"
-            >
-              {choice.choice}
-            </div>
-          </React.Fragment>
-        ))}{" "}
+        {choicestate &&
+          choicestate.map((choice) => (
+            <React.Fragment key={choice.choice_id}>
+              <div
+                onClick={() => {
+                  delete_choice(id, choice.choice_id);
+                }}
+                className="list-group-item set"
+              >
+                {choice.choice}
+              </div>
+            </React.Fragment>
+          ))}{" "}
         <div className={"alert " + buttonc} role="alert">
           {text}
         </div>

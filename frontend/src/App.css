@@ -15,7 +15,7 @@ a {
   margin: 2rem;
 }
 
-ol,
+ul,
 .font {
   font: 25px "Arial", san-serif;
 }
@@ -61,4 +61,8 @@ hr.new1 {
 
 .marb2 {
   margin-bottom: 1rem;
+}
+
+.center {
+  text-align: center;
 }

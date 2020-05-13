@@ -9,7 +9,7 @@ const Choice = sequelize.define("choice", {
     primaryKey: true,
   },
   choice: Sequelize.STRING,
-  is_correct: Sequelize.BOOLEAN,
+  is_correct: { type: Sequelize.BOOLEAN, defaultValue: false },
 });
 
 module.exports = Choice;

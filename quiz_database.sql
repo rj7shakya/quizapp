@@ -17,7 +17,7 @@ use quiz;
 -- insert into choice(choice, question_id)
 -- value ('b ',3);
 
-select * from choices;
+select * from questions;
 -- SELECT question.question,choice.choice,choice.is_correct FROM question INNER JOIN choice ON question.question_id=choice.question_id order by question.question_id;choice_id
 
 -- select choice,is_correct from choice where question_id=2;

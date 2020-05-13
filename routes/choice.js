@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Choice = require("../models/choice");
 
+//get choices of given id
 router.get("/:id", (req, res) => {
   Choice.findByPk(req.params.id)
     .then((choice) => {
@@ -14,6 +15,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
+//post choices for given id
 router.post("/:id", (req, res) => {
   Choice.create({
     is_correct: req.body.is_correct,

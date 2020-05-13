@@ -1,16 +1,15 @@
 import React from "react";
 import Choice from "./Choice";
-import axios from "axios";
 
 const question = ({ questions, id }) => {
   return (
     <div>
       <ul>
         {questions.map((question) => (
-          <>
+          <React.Fragment key={question.question_id}>
             <li>{question.question}</li>
-            <Choice id={question.question_id} key={question.id} />
-          </>
+            <Choice choices={question.choices} key={question.id} />
+          </React.Fragment>
         ))}{" "}
       </ul>
     </div>

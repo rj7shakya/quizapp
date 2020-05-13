@@ -3,6 +3,7 @@ const router = express.Router();
 const Question = require("../models/question");
 const Choice = require("../models/choice");
 
+//get all questions with choices
 router.get("/", (req, res) => {
   console.log("requesting");
   Question.findAll({
@@ -23,6 +24,7 @@ router.get("/", (req, res) => {
     });
 });
 
+//post a questions
 router.post("/", (req, res) => {
   Question.create({ question: req.body.question })
     .then((result) => {

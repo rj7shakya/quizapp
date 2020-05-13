@@ -1,94 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Choice from "./choice";
+import axios from "axios";
 
-const question = ({ questions }) => {
-  const addQuestion = (e) => {
-    console.log(e.target.value);
+const Question = ({ questions, history }) => {
+  const [num, setnum] = useState(0);
+  useEffect(() => {
+    setnum(questions.length);
+  }, [questions]);
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    console.log(e.target.question.value);
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+    const question = {
+      question: e.target.question.value,
+    };
+    await axios
+      .post("/question", question, config)
+      .then((res) => {
+        console.log("done", res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div className="">
+      <h4>{num}</h4>
       <ol className="list-group">
         {questions.map((question) => (
           <React.Fragment key={question.question_id}>
             <li className="mar-2 ">{question.question}</li>
+            <Choice choices={question.choices} key={question.id} />
+            <hr className="new1"></hr>
           </React.Fragment>
         ))}{" "}
         <br />
         <br />
       </ol>
       <div className="font">
-        Add a question{" "}
-        <form action="">
-          <div class="input-group mb-3">
+        <form action="" onSubmit={onSubmit}>
+          <div className="input-group mb-3">
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               placeholder="Add question here "
-              aria-label="Recipient's username"
-              aria-describedby="basic-addon2"
+              name="question"
             ></input>
-            <div class="input-group-append">
-              <span class="input-group-text" id="basic-addon2">
-                <i
-                  onClick={(e) => {
-                    e.preventDefault();
-                    // addQuestion();
-                  }}
-                  className="fa fa-plus plus"
-                  aria-hidden="true"
-                ></i>
-              </span>
-            </div>
           </div>
-          <button
+          <input
             type="submit"
-            onSubmit={(e) => {
-              e.preventDefault();
-              console.log(e.target.value);
-            }}
-            class="btn btn-primary"
-          >
-            Submit
-          </button>
-        </form>
-        <form onSubmit="addQuestion(this)">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input
-              type="email"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            ></input>
-            <small id="emailHelp" class="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-            ></input>
-          </div>
-          <div class="form-group form-check">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              id="exampleCheck1"
-            ></input>
-            <label class="form-check-label" for="exampleCheck1">
-              Check me out
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary">
-            Submit
-          </button>
+            value="Add question"
+            className="btn btn-primary "
+          />
         </form>
       </div>
     </div>
   );
 };
 
-export default question;
+export default Question;

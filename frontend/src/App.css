@@ -29,3 +29,12 @@ ol,
 .plus {
   cursor: pointer;
 }
+
+hr.new1 {
+  border-top: 4px solid red;
+}
+
+.set {
+  width: 300px !important;
+  padding: 0;
+}

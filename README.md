@@ -7,5 +7,11 @@
   <li>open the terminal in project directory and then run : <bold>npm install</bold></li>
   <li>Then,move to frontend folder directory( cd frontend/ ) and then run : <bold>npm install</bold></li>
   <li>Then,move to back to project directory( cd .. ) and then run : <bold>npm run dev</bold></li>
+  <li>Then,open connection.js file and then run : replace </li>
+  const sequelize = new Seqeulize("quiz", "root", "inspiron", {
+  dialect: "mysql",
+  host: "localhost",
+});
+
   
 </ol>
